@@ -40,7 +40,7 @@ class TimberRedux
         $ret = $this->_data->get( $name, $default );
 
         // Maybe return WPML
-        if ( $this->_wpml_context ) {
+        if ( $this->_wpml_context && function_exists( 'icl_t' ) ) {
             $found = false;
             $translated = \icl_t( $this->_wpml_context, $name, $ret, $found );
 
@@ -74,7 +74,7 @@ class TimberRedux
 
         $this->_data = new \ReduxFramework( $sections, $args, $extra_tabs );
 
-        if ( isset( $args['wpml_context'] ) && $args['wpml_context'] ) {
+        if ( isset( $args['wpml_context'] ) && $args['wpml_context'] && function_exists( 'icl_register_string' ) ) {
             $this->_register_sections_wpml( $sections, $args['wpml_context'] );
             $this->_wpml_context = $args['wpml_context'];
         }
