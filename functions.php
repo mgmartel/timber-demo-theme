@@ -1,5 +1,11 @@
 <?php
 
+    require_once locate_template('/lib/TimberRedux.php');
+    $args = require locate_template('/etc/args.php');
+    $sections = require locate_template('/etc/sections.php');
+
+    $options = new TimberRedux( $sections, $args );
+
 	add_theme_support('post-formats');
 	add_theme_support('post-thumbnails');
 	add_theme_support('menus');
